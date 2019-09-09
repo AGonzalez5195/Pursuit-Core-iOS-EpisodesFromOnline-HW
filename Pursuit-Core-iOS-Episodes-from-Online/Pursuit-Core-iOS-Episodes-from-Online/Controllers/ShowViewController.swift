@@ -28,9 +28,26 @@ class showViewController: UIViewController {
         }
     }
     
+    var currentShowIDURL = String()
+    
     var searchString: String? = nil { didSet { self.tableView.reloadData()} }
     
     //MARK: -- Functions
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let segueIdentifer = segue.identifier else {fatalError("No identifier in segue")}
+        
+        switch segueIdentifer {
+        case "segueToEpisodes":
+            guard let destVC = segue.destination as? SpecificShowViewController else { fatalError("Unexpected segue VC") }
+            guard let selectedIndexPath = tableView.indexPathForSelectedRow else { fatalError("No row selected") }
+            let selectedShow = filteredShows[selectedIndexPath.row]
+            destVC.currentShowURL = currentShowIDURL
+        default:
+            fatalError("unexpected segue identifier")
+        }
+    }
+    
     private func loadData(){
         Show.getShowData { (result) in
             DispatchQueue.main.async {
@@ -72,6 +89,7 @@ extension showViewController: UITableViewDataSource {
         showCell.showNameLabel.text = currentShow.name
         showCell.showRatingLabel.text = "Rating: \(currentShow.rating?.average ?? 0.0)"
         showCell.idLabel.text = "ID: \(currentShow.id)"
+        self.currentShowIDURL = "http://api.tvmaze.com/shows/\(currentShow.id)/episodes"
         ImageHelper.shared.fetchImage(urlString: currentShow.image.original) { (result) in
             DispatchQueue.main.async {
                 switch result {

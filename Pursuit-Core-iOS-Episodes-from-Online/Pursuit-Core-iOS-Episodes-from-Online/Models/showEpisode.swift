@@ -10,7 +10,9 @@ import Foundation
 
 struct showEpisode: Codable {
     let name: String
-    
+    let image: EpisodeImage
+    let season: Int
+    let number: Int
     static func getEpisodeData(showURL: String, completionHandler: @escaping (Result<[showEpisode],AppError>) -> () ) {
 //        let url = "http://api.tvmaze.com/shows"
         
@@ -27,4 +29,8 @@ struct showEpisode: Codable {
             }
         }
     }
+}
+
+struct EpisodeImage: Codable {
+    let original: String
 }

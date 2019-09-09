@@ -8,10 +8,10 @@
 
 import UIKit
 
-class SpecificShowTableViewCell: UITableViewCell {
+class showEpisodesTableViewCell: UITableViewCell {
 
     @IBOutlet weak var episodeImage: UIImageView!
-    
+    @IBOutlet weak var seasonEpisodeLabel: UILabel!
     @IBOutlet weak var episodeNameLabel: UILabel!
     
     override func awakeFromNib() {
