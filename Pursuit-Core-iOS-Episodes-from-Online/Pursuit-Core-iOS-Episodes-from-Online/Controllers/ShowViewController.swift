@@ -9,36 +9,37 @@
 import UIKit
 
 class showViewController: UIViewController {
-    
+    //MARK: -- Outlets
     @IBOutlet weak var tableView: UITableView!
-    
     @IBOutlet weak var searchBar: UISearchBar!
     
-    var shows = [Shows]() {
+    //MARK: -- Properties
+    var shows = [Show]() {
         didSet{
             tableView.reloadData()
         }
     }
-    
-    var filteredShows: [Shows] {
+
+    var filteredShows: [Show] {
         get {
             guard let searchString = searchString else { return shows }
             guard searchString != ""  else { return shows }
-            return Shows.getFilteredShows(arr: shows, searchString: searchString)
+            return Show.getFilteredShows(arr: shows, searchString: searchString)
         }
     }
     
     var searchString: String? = nil { didSet { self.tableView.reloadData()} }
     
+    //MARK: -- Functions
     private func loadData(){
-        Shows.getShowData { (result) in
+        Show.getShowData { (result) in
             DispatchQueue.main.async {
                 switch result {
                 case .failure(let error):
                     print(error)
                 case .success(let showData):
                     self.shows = showData
-                    self.shows = Shows.getSortedArray(arr: self.shows)
+                    self.shows = Show.getSortedArray(arr: self.shows)
                 }
             }
         }
@@ -57,6 +58,7 @@ class showViewController: UIViewController {
     }
 }
 
+//MARK: -- Datasource Methods
 extension showViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return filteredShows.count
@@ -69,6 +71,7 @@ extension showViewController: UITableViewDataSource {
         
         showCell.showNameLabel.text = currentShow.name
         showCell.showRatingLabel.text = "Rating: \(currentShow.rating?.average ?? 0.0)"
+        showCell.idLabel.text = "ID: \(currentShow.id)"
         ImageHelper.shared.fetchImage(urlString: currentShow.image.original) { (result) in
             DispatchQueue.main.async {
                 switch result {

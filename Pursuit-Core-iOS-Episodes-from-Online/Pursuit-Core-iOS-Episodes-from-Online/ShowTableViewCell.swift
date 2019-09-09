@@ -17,6 +17,8 @@ class ShowTableViewCell: UITableViewCell {
     
     @IBOutlet weak var showRatingLabel: UILabel!
     
+    @IBOutlet weak var idLabel: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
     }

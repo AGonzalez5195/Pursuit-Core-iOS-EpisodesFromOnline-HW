@@ -8,11 +8,12 @@
 
 import Foundation
 
-struct Shows: Codable {
+struct Show: Codable {
     let name: String
     let image: Image
     let rating: Rating?
-    static func getShowData(completionHandler: @escaping (Result<[Shows],AppError>) -> () ) {
+    let id: Int
+    static func getShowData(completionHandler: @escaping (Result<[Show],AppError>) -> () ) {
         let url = "http://api.tvmaze.com/shows"
         
         NetworkManager.shared.fetchData(urlString: url) { (result) in
@@ -21,7 +22,7 @@ struct Shows: Codable {
                 completionHandler(.failure(error))
             case .success(let data):
                 do {
-                    let showData = try JSONDecoder().decode([Shows].self, from: data)
+                    let showData = try JSONDecoder().decode([Show].self, from: data)
                     completionHandler(.success(showData))
                 } catch {
                     completionHandler(.failure(.badJSONError))                }
@@ -29,12 +30,12 @@ struct Shows: Codable {
         }
     }
     
-    static func getSortedArray(arr: [Shows]) -> [Shows] {
+    static func getSortedArray(arr: [Show]) -> [Show] {
         let sortedArr = arr.sorted{$0.name < $1.name}
         return sortedArr
     }
     
-    static func getFilteredShows(arr: [Shows], searchString: String) -> [Shows] {
+    static func getFilteredShows(arr: [Show], searchString: String) -> [Show] {
         return arr.filter{$0.name.lowercased().contains(searchString.lowercased())}
     }
 }
