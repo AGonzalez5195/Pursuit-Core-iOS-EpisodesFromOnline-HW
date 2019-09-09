@@ -12,6 +12,9 @@
 		976F55072326A0D200E305A1 /* ImageHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 976F55062326A0D200E305A1 /* ImageHelper.swift */; };
 		976F55092326A0F900E305A1 /* AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 976F55082326A0F900E305A1 /* AppError.swift */; };
 		976F550B2326A11200E305A1 /* Show.swift in Sources */ = {isa = PBXBuildFile; fileRef = 976F550A2326A11200E305A1 /* Show.swift */; };
+		976F550F2326B01400E305A1 /* SpecificShowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 976F550E2326B01400E305A1 /* SpecificShowViewController.swift */; };
+		976F55112326B04300E305A1 /* SpecificShowTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 976F55102326B04300E305A1 /* SpecificShowTableViewCell.swift */; };
+		976F55132326B0C200E305A1 /* specificShow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 976F55122326B0C200E305A1 /* specificShow.swift */; };
 		CD01CD5C232178AF002D0255 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD01CD5B232178AF002D0255 /* AppDelegate.swift */; };
 		CD01CD5E232178AF002D0255 /* ShowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD01CD5D232178AF002D0255 /* ShowViewController.swift */; };
 		CD01CD61232178AF002D0255 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD01CD5F232178AF002D0255 /* Main.storyboard */; };
@@ -36,6 +39,9 @@
 		976F55062326A0D200E305A1 /* ImageHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageHelper.swift; sourceTree = "<group>"; };
 		976F55082326A0F900E305A1 /* AppError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppError.swift; sourceTree = "<group>"; };
 		976F550A2326A11200E305A1 /* Show.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Show.swift; sourceTree = "<group>"; };
+		976F550E2326B01400E305A1 /* SpecificShowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecificShowViewController.swift; sourceTree = "<group>"; };
+		976F55102326B04300E305A1 /* SpecificShowTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecificShowTableViewCell.swift; sourceTree = "<group>"; };
+		976F55122326B0C200E305A1 /* specificShow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = specificShow.swift; sourceTree = "<group>"; };
 		CD01CD58232178AF002D0255 /* Pursuit-Core-iOS-Episodes-from-Online.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pursuit-Core-iOS-Episodes-from-Online.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD01CD5B232178AF002D0255 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CD01CD5D232178AF002D0255 /* ShowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowViewController.swift; sourceTree = "<group>"; };
@@ -70,6 +76,7 @@
 			isa = PBXGroup;
 			children = (
 				CD01CD5D232178AF002D0255 /* ShowViewController.swift */,
+				976F550E2326B01400E305A1 /* SpecificShowViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -81,6 +88,7 @@
 				976F55062326A0D200E305A1 /* ImageHelper.swift */,
 				976F55082326A0F900E305A1 /* AppError.swift */,
 				976F550A2326A11200E305A1 /* Show.swift */,
+				976F55122326B0C200E305A1 /* specificShow.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -111,6 +119,7 @@
 				976F550C2326AADE00E305A1 /* Controllers */,
 				976F550D2326AAEC00E305A1 /* Models */,
 				976F550223269B5400E305A1 /* ShowTableViewCell.swift */,
+				976F55102326B04300E305A1 /* SpecificShowTableViewCell.swift */,
 				CD01CD62232178B2002D0255 /* Assets.xcassets */,
 				CD01CD64232178B2002D0255 /* LaunchScreen.storyboard */,
 				CD01CD67232178B2002D0255 /* Info.plist */,
@@ -230,10 +239,13 @@
 			files = (
 				976F55052326A08C00E305A1 /* NetworkManager.swift in Sources */,
 				976F55072326A0D200E305A1 /* ImageHelper.swift in Sources */,
+				976F550F2326B01400E305A1 /* SpecificShowViewController.swift in Sources */,
+				976F55112326B04300E305A1 /* SpecificShowTableViewCell.swift in Sources */,
 				976F550B2326A11200E305A1 /* Show.swift in Sources */,
 				976F55092326A0F900E305A1 /* AppError.swift in Sources */,
 				976F550323269B5400E305A1 /* ShowTableViewCell.swift in Sources */,
 				CD01CD5E232178AF002D0255 /* ShowViewController.swift in Sources */,
+				976F55132326B0C200E305A1 /* specificShow.swift in Sources */,
 				CD01CD5C232178AF002D0255 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
