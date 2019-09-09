@@ -28,7 +28,6 @@ class showViewController: UIViewController {
         }
     }
     
-    var currentShowIDURL = String()
     
     var searchString: String? = nil { didSet { self.tableView.reloadData()} }
     
@@ -42,7 +41,9 @@ class showViewController: UIViewController {
             guard let destVC = segue.destination as? SpecificShowViewController else { fatalError("Unexpected segue VC") }
             guard let selectedIndexPath = tableView.indexPathForSelectedRow else { fatalError("No row selected") }
             let selectedShow = filteredShows[selectedIndexPath.row]
-            destVC.currentShowURL = currentShowIDURL
+            let selectedShowIDURl = "http://api.tvmaze.com/shows/\(selectedShow.id)/episodes"
+            destVC.currentShowURL = selectedShowIDURl
+            print(selectedShowIDURl)
         default:
             fatalError("unexpected segue identifier")
         }
@@ -89,7 +90,6 @@ extension showViewController: UITableViewDataSource {
         showCell.showNameLabel.text = currentShow.name
         showCell.showRatingLabel.text = "Rating: \(currentShow.rating?.average ?? 0.0)"
         showCell.idLabel.text = "ID: \(currentShow.id)"
-        self.currentShowIDURL = "http://api.tvmaze.com/shows/\(currentShow.id)/episodes"
         ImageHelper.shared.fetchImage(urlString: currentShow.image.original) { (result) in
             DispatchQueue.main.async {
                 switch result {

@@ -9,10 +9,10 @@
 import UIKit
 
 class SpecificShowViewController: UIViewController {
-    
+    //MARK: -- Outlets
     @IBOutlet weak var tableView: UITableView!
     
-    
+    //MARK: -- Properties
     var episodes = [showEpisode]() {
         didSet {
             tableView.reloadData()
@@ -21,7 +21,20 @@ class SpecificShowViewController: UIViewController {
     
     var currentShowURL = String()
     
-    
+    //MARK: -- Functions
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let segueIdentifer = segue.identifier else {fatalError("No identifier in segue")}
+        
+        switch segueIdentifer {
+        case "segueToDetail":
+            guard let destVC = segue.destination as? detailViewController else { fatalError("Unexpected segue VC") }
+            guard let selectedIndexPath = tableView.indexPathForSelectedRow else { fatalError("No row selected") }
+            let selectedEpisode = episodes[selectedIndexPath.row]
+            destVC.currentEpisode = selectedEpisode
+        default:
+            fatalError("unexpected segue identifier")
+        }
+    }
     
     private func getSelectedShowData(newshowURL: String){
         showEpisode.getEpisodeData(showURL: newshowURL ) { (result) in
@@ -58,16 +71,18 @@ extension SpecificShowViewController: UITableViewDataSource {
         
         episodeCell.episodeNameLabel.text = currentEpisode.name
         episodeCell.seasonEpisodeLabel.text = "S:\(currentEpisode.season) E: \(currentEpisode.number)"
-        ImageHelper.shared.fetchImage(urlString: currentEpisode.image.original) { (result) in
-            DispatchQueue.main.async {
-                switch result {
-                case .failure(let error):
-                    print(error)
-                case .success(let imageFromOnline):
-                    episodeCell.episodeImage.image = imageFromOnline
+        if let currentImage = currentEpisode.image?.original {
+            ImageHelper.shared.fetchImage(urlString: currentImage) { (result) in
+                DispatchQueue.main.async {
+                    switch result {
+                    case .failure(let error):
+                        print(error)
+                    case .success(let imageFromOnline):
+                        episodeCell.episodeImage.image = imageFromOnline
+                    }
                 }
             }
-        }
+        } else { episodeCell.episodeImage.image = UIImage(named: "noImage") }
         return episodeCell
     }
 }

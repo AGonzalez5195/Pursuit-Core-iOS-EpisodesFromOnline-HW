@@ -13,6 +13,8 @@ struct Show: Codable {
     let image: Image
     let rating: Rating?
     let id: Int
+    let externals: Externals
+    
     static func getShowData(completionHandler: @escaping (Result<[Show],AppError>) -> () ) {
         let url = "http://api.tvmaze.com/shows"
         
@@ -46,4 +48,8 @@ struct Image: Codable {
 
 struct Rating: Codable {
     let average: Double?
+}
+
+struct Externals: Codable {
+    let tvrage: Int
 }

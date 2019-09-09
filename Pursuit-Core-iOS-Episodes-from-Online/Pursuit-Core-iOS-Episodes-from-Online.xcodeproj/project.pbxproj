@@ -15,6 +15,7 @@
 		976F550F2326B01400E305A1 /* SpecificShowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 976F550E2326B01400E305A1 /* SpecificShowViewController.swift */; };
 		976F55112326B04300E305A1 /* showEpisodesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 976F55102326B04300E305A1 /* showEpisodesTableViewCell.swift */; };
 		976F55132326B0C200E305A1 /* showEpisode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 976F55122326B0C200E305A1 /* showEpisode.swift */; };
+		976F55152326B89E00E305A1 /* detailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 976F55142326B89E00E305A1 /* detailViewController.swift */; };
 		CD01CD5C232178AF002D0255 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD01CD5B232178AF002D0255 /* AppDelegate.swift */; };
 		CD01CD5E232178AF002D0255 /* ShowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD01CD5D232178AF002D0255 /* ShowViewController.swift */; };
 		CD01CD61232178AF002D0255 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD01CD5F232178AF002D0255 /* Main.storyboard */; };
@@ -42,6 +43,7 @@
 		976F550E2326B01400E305A1 /* SpecificShowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecificShowViewController.swift; sourceTree = "<group>"; };
 		976F55102326B04300E305A1 /* showEpisodesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = showEpisodesTableViewCell.swift; sourceTree = "<group>"; };
 		976F55122326B0C200E305A1 /* showEpisode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = showEpisode.swift; sourceTree = "<group>"; };
+		976F55142326B89E00E305A1 /* detailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = detailViewController.swift; sourceTree = "<group>"; };
 		CD01CD58232178AF002D0255 /* Pursuit-Core-iOS-Episodes-from-Online.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pursuit-Core-iOS-Episodes-from-Online.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD01CD5B232178AF002D0255 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CD01CD5D232178AF002D0255 /* ShowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowViewController.swift; sourceTree = "<group>"; };
@@ -77,6 +79,7 @@
 			children = (
 				CD01CD5D232178AF002D0255 /* ShowViewController.swift */,
 				976F550E2326B01400E305A1 /* SpecificShowViewController.swift */,
+				976F55142326B89E00E305A1 /* detailViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -240,6 +243,7 @@
 				976F55052326A08C00E305A1 /* NetworkManager.swift in Sources */,
 				976F55072326A0D200E305A1 /* ImageHelper.swift in Sources */,
 				976F550F2326B01400E305A1 /* SpecificShowViewController.swift in Sources */,
+				976F55152326B89E00E305A1 /* detailViewController.swift in Sources */,
 				976F55112326B04300E305A1 /* showEpisodesTableViewCell.swift in Sources */,
 				976F550B2326A11200E305A1 /* Show.swift in Sources */,
 				976F55092326A0F900E305A1 /* AppError.swift in Sources */,

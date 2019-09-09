@@ -10,11 +10,12 @@ import Foundation
 
 struct showEpisode: Codable {
     let name: String
-    let image: EpisodeImage
+    let image: EpisodeImage?
     let season: Int
     let number: Int
+    let summary: String?
+    
     static func getEpisodeData(showURL: String, completionHandler: @escaping (Result<[showEpisode],AppError>) -> () ) {
-//        let url = "http://api.tvmaze.com/shows"
         
         NetworkManager.shared.fetchData(urlString: showURL) { (result) in
             switch result {
