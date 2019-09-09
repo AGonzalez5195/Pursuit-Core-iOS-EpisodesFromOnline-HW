@@ -20,6 +20,16 @@ class showViewController: UIViewController {
         }
     }
     
+    var filteredShows: [Shows] {
+        get {
+            guard let searchString = searchString else { return shows }
+            guard searchString != ""  else { return shows }
+            return Shows.getFilteredShows(arr: shows, searchString: searchString)
+        }
+    }
+    
+    var searchString: String? = nil { didSet { self.tableView.reloadData()} }
+    
     private func loadData(){
         Shows.getShowData { (result) in
             DispatchQueue.main.async {
@@ -28,7 +38,7 @@ class showViewController: UIViewController {
                     print(error)
                 case .success(let showData):
                     self.shows = showData
-                    
+                    self.shows = Shows.getSortedArray(arr: self.shows)
                 }
             }
         }
@@ -37,7 +47,7 @@ class showViewController: UIViewController {
     private func configureDelegateDataSources(){
         tableView.dataSource = self
         tableView.delegate = self
-        //        searchBar.delegate = self
+        searchBar.delegate = self
     }
     
     override func viewDidLoad() {
@@ -49,12 +59,12 @@ class showViewController: UIViewController {
 
 extension showViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return shows.count
+        return filteredShows.count
     }
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let currentShow = shows[indexPath.row]
+        let currentShow = filteredShows[indexPath.row]
         let showCell = tableView.dequeueReusableCell(withIdentifier: "showCell", for: indexPath) as! ShowTableViewCell
         
         showCell.showNameLabel.text = currentShow.name
@@ -77,7 +87,13 @@ extension showViewController: UITableViewDataSource {
 
 extension showViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 150
+        return 200
     }
 }
 
+
+extension showViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        searchString = searchText
+    }
+}

@@ -28,6 +28,15 @@ struct Shows: Codable {
             }
         }
     }
+    
+    static func getSortedArray(arr: [Shows]) -> [Shows] {
+        let sortedArr = arr.sorted{$0.name < $1.name}
+        return sortedArr
+    }
+    
+    static func getFilteredShows(arr: [Shows], searchString: String) -> [Shows] {
+        return arr.filter{$0.name.lowercased().contains(searchString.lowercased())}
+    }
 }
 
 struct Image: Codable {
