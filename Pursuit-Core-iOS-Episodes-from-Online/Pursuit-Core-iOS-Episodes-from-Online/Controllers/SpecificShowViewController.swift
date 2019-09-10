@@ -18,8 +18,8 @@ class SpecificShowViewController: UIViewController {
             tableView.reloadData()
         }
     }
-    
     var currentShowURL = String()
+    var currentShowName = String()
     
     //MARK: -- Functions
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -54,7 +54,7 @@ class SpecificShowViewController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         getSelectedShowData(newshowURL: currentShowURL)
-        
+        self.navigationItem.title = currentShowName
     }
 }
 
@@ -64,11 +64,9 @@ extension SpecificShowViewController: UITableViewDataSource {
         return episodes.count
     }
     
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let currentEpisode = episodes[indexPath.row]
         let episodeCell = tableView.dequeueReusableCell(withIdentifier: "episodeCell", for: indexPath) as! showEpisodesTableViewCell
-        
         episodeCell.episodeNameLabel.text = currentEpisode.name
         episodeCell.seasonEpisodeLabel.text = "S:\(currentEpisode.season) E: \(currentEpisode.number)"
         if let currentImage = currentEpisode.image?.original {
@@ -91,7 +89,7 @@ extension SpecificShowViewController: UITableViewDataSource {
 
 extension SpecificShowViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 200
+        return 140
     }
 }
 

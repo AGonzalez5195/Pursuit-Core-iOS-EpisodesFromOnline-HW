@@ -14,6 +14,7 @@ struct Show: Codable {
     let rating: Rating?
     let id: Int
     let externals: Externals
+    let genres: [String]
     
     static func getShowData(completionHandler: @escaping (Result<[Show],AppError>) -> () ) {
         let url = "http://api.tvmaze.com/shows"
@@ -53,3 +54,4 @@ struct Rating: Codable {
 struct Externals: Codable {
     let tvrage: Int
 }
+

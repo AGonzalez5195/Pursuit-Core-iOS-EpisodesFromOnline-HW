@@ -43,7 +43,13 @@ class showViewController: UIViewController {
             let selectedShow = filteredShows[selectedIndexPath.row]
             let selectedShowIDURl = "http://api.tvmaze.com/shows/\(selectedShow.id)/episodes"
             destVC.currentShowURL = selectedShowIDURl
-            print(selectedShowIDURl)
+            destVC.currentShowName = selectedShow.name
+            
+            let backItem = UIBarButtonItem()
+            backItem.title = "Shows"
+            navigationItem.backBarButtonItem = backItem // This will show in the next view controller being pushed
+
+            
         default:
             fatalError("unexpected segue identifier")
         }
@@ -69,6 +75,16 @@ class showViewController: UIViewController {
         searchBar.delegate = self
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.setNavigationBarHidden(false, animated: animated)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureDelegateDataSources()
@@ -89,7 +105,6 @@ extension showViewController: UITableViewDataSource {
         
         showCell.showNameLabel.text = currentShow.name
         showCell.showRatingLabel.text = "Rating: \(currentShow.rating?.average ?? 0.0)"
-        showCell.idLabel.text = "ID: \(currentShow.id)"
         ImageHelper.shared.fetchImage(urlString: currentShow.image.original) { (result) in
             DispatchQueue.main.async {
                 switch result {
@@ -108,7 +123,7 @@ extension showViewController: UITableViewDataSource {
 
 extension showViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 200
+        return 240
     }
 }
 
