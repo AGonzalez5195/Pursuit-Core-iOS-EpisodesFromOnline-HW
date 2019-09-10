@@ -43,7 +43,7 @@ class detailViewController: UIViewController {
         } else {
             descriptionText.text = ""
         }
-        seasonEpisodeLabel.text = "Season: \(currentEpisode.season). Episode: \(currentEpisode.number)"
+        seasonEpisodeLabel.text = "Season: \(currentEpisode.season) Episode: \(currentEpisode.number)"
     }
     
     override func viewDidLoad() {
