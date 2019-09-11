@@ -19,7 +19,7 @@ class showViewController: UIViewController {
             tableView.reloadData()
         }
     }
-
+    
     var filteredShows: [Show] {
         get {
             guard let searchString = searchString else { return shows }
@@ -47,7 +47,7 @@ class showViewController: UIViewController {
             let backItem = UIBarButtonItem()
             backItem.title = "Shows"
             navigationItem.backBarButtonItem = backItem // This will show in the next view controller being pushed
-
+            
             
         default:
             fatalError("unexpected segue identifier")
@@ -75,9 +75,8 @@ class showViewController: UIViewController {
     }
     
     private func setCellDesign(cell: ShowTableViewCell){
+        [cell.showNameLabel, cell.genreLabel].forEach{$0?.textColor = .white}
         cell.backgroundColor = .clear
-        cell.showNameLabel.textColor = .white
-        cell.showRatingLabel.textColor = .white
         let clearBG = UIView()
         clearBG.backgroundColor = UIColor.clear
         cell.selectedBackgroundView = clearBG
@@ -111,13 +110,13 @@ extension showViewController: UITableViewDataSource {
         return filteredShows.count
     }
     
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let currentShow = filteredShows[indexPath.row]
         let showCell = tableView.dequeueReusableCell(withIdentifier: "showCell", for: indexPath) as! ShowTableViewCell
         
         showCell.showNameLabel.text = currentShow.name
         showCell.showRatingLabel.text = "Rating: \(currentShow.rating?.average ?? 0.0)"
+        showCell.genreLabel.text = "\(currentShow.genres.minimalDescription.capitalized)"
         setCellDesign(cell: showCell)
         ImageHelper.shared.fetchImage(urlString: currentShow.image.original) { (result) in
             DispatchQueue.main.async {
@@ -149,5 +148,12 @@ extension showViewController: UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
+    }
+}
+
+
+extension Sequence {
+    var minimalDescription: String {
+        return map { "\($0)" }.joined(separator: ", ")
     }
 }

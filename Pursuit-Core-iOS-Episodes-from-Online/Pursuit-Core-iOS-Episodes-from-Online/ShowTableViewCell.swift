@@ -19,6 +19,8 @@ class ShowTableViewCell: UITableViewCell {
     
     @IBOutlet weak var idLabel: UILabel!
     
+    @IBOutlet weak var genreLabel: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
     }

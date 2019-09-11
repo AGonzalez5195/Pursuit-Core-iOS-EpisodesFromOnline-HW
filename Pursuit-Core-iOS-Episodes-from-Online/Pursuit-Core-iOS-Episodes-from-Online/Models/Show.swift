@@ -14,7 +14,32 @@ struct Show: Codable {
     let rating: Rating?
     let id: Int
     let externals: Externals
-    let genres: [String]
+    let genres: [Genre]
+    
+    enum Genre: String, Codable {
+        case action = "Action"
+        case adventure = "Adventure"
+        case anime = "Anime"
+        case comedy = "Comedy"
+        case crime = "Crime"
+        case drama = "Drama"
+        case espionage = "Espionage"
+        case family = "Family"
+        case fantasy = "Fantasy"
+        case history = "History"
+        case horror = "Horror"
+        case legal = "Legal"
+        case medical = "Medical"
+        case music = "Music"
+        case mystery = "Mystery"
+        case romance = "Romance"
+        case scienceFiction = "Science-Fiction"
+        case sports = "Sports"
+        case supernatural = "Supernatural"
+        case thriller = "Thriller"
+        case war = "War"
+        case western = "Western"
+    }
     
     static func getShowData(completionHandler: @escaping (Result<[Show],AppError>) -> () ) {
         let url = "http://api.tvmaze.com/shows"
