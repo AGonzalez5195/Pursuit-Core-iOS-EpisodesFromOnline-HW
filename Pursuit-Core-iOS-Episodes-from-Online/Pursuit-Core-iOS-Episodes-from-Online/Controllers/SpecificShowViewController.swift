@@ -15,11 +15,12 @@ class SpecificShowViewController: UIViewController {
     //MARK: -- Properties
     var episodes = [showEpisode]() {
         didSet {
+            
             tableView.reloadData()
         }
     }
     var currentShowURL = String()
-    var currentShowName = String()
+    
     
     //MARK: -- Functions
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -49,12 +50,21 @@ class SpecificShowViewController: UIViewController {
         }
     }
     
+    private func setCellDesign(cell: showEpisodesTableViewCell){
+        cell.backgroundColor = .clear
+        cell.episodeNameLabel.textColor = .white
+        cell.seasonEpisodeLabel.textColor = .white
+        let clearBG = UIView()
+        clearBG.backgroundColor = UIColor.clear
+        cell.selectedBackgroundView = clearBG
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.dataSource = self
         tableView.delegate = self
         getSelectedShowData(newshowURL: currentShowURL)
-        self.navigationItem.title = currentShowName
+        
     }
 }
 
@@ -68,7 +78,9 @@ extension SpecificShowViewController: UITableViewDataSource {
         let currentEpisode = episodes[indexPath.row]
         let episodeCell = tableView.dequeueReusableCell(withIdentifier: "episodeCell", for: indexPath) as! showEpisodesTableViewCell
         episodeCell.episodeNameLabel.text = currentEpisode.name
-        episodeCell.seasonEpisodeLabel.text = "S:\(currentEpisode.season) E: \(currentEpisode.number)"
+        episodeCell.seasonEpisodeLabel.text = "S\(currentEpisode.season) E\(currentEpisode.number)"
+        
+        setCellDesign(cell: episodeCell)
         if let currentImage = currentEpisode.image?.original {
             ImageHelper.shared.fetchImage(urlString: currentImage) { (result) in
                 DispatchQueue.main.async {

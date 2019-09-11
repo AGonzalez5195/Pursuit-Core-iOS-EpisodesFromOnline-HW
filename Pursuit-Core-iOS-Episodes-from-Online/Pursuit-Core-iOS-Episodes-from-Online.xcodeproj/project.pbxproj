@@ -16,6 +16,7 @@
 		976F55112326B04300E305A1 /* showEpisodesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 976F55102326B04300E305A1 /* showEpisodesTableViewCell.swift */; };
 		976F55132326B0C200E305A1 /* showEpisode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 976F55122326B0C200E305A1 /* showEpisode.swift */; };
 		976F55152326B89E00E305A1 /* detailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 976F55142326B89E00E305A1 /* detailViewController.swift */; };
+		976F5580232877A700E305A1 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 976F557F232877A700E305A1 /* GradientView.swift */; };
 		CD01CD5C232178AF002D0255 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD01CD5B232178AF002D0255 /* AppDelegate.swift */; };
 		CD01CD5E232178AF002D0255 /* ShowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD01CD5D232178AF002D0255 /* ShowViewController.swift */; };
 		CD01CD61232178AF002D0255 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD01CD5F232178AF002D0255 /* Main.storyboard */; };
@@ -44,6 +45,7 @@
 		976F55102326B04300E305A1 /* showEpisodesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = showEpisodesTableViewCell.swift; sourceTree = "<group>"; };
 		976F55122326B0C200E305A1 /* showEpisode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = showEpisode.swift; sourceTree = "<group>"; };
 		976F55142326B89E00E305A1 /* detailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = detailViewController.swift; sourceTree = "<group>"; };
+		976F557F232877A700E305A1 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		CD01CD58232178AF002D0255 /* Pursuit-Core-iOS-Episodes-from-Online.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pursuit-Core-iOS-Episodes-from-Online.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD01CD5B232178AF002D0255 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CD01CD5D232178AF002D0255 /* ShowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowViewController.swift; sourceTree = "<group>"; };
@@ -119,6 +121,7 @@
 			children = (
 				CD01CD5B232178AF002D0255 /* AppDelegate.swift */,
 				CD01CD5F232178AF002D0255 /* Main.storyboard */,
+				976F557F232877A700E305A1 /* GradientView.swift */,
 				976F550C2326AADE00E305A1 /* Controllers */,
 				976F550D2326AAEC00E305A1 /* Models */,
 				976F550223269B5400E305A1 /* ShowTableViewCell.swift */,
@@ -242,6 +245,7 @@
 			files = (
 				976F55052326A08C00E305A1 /* NetworkManager.swift in Sources */,
 				976F55072326A0D200E305A1 /* ImageHelper.swift in Sources */,
+				976F5580232877A700E305A1 /* GradientView.swift in Sources */,
 				976F550F2326B01400E305A1 /* SpecificShowViewController.swift in Sources */,
 				976F55152326B89E00E305A1 /* detailViewController.swift in Sources */,
 				976F55112326B04300E305A1 /* showEpisodesTableViewCell.swift in Sources */,
@@ -413,12 +417,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 5CMXYD37HJ;
 				INFOPLIST_FILE = "Pursuit-Core-iOS-Episodes-from-Online/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "pursuit.Pursuit-Core-iOS-Episodes-from-Online";
+				PRODUCT_BUNDLE_IDENTIFIER = "Anthony.Pursuit-Core-iOS-Episodes-from-Online";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -430,12 +435,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 5CMXYD37HJ;
 				INFOPLIST_FILE = "Pursuit-Core-iOS-Episodes-from-Online/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "pursuit.Pursuit-Core-iOS-Episodes-from-Online";
+				PRODUCT_BUNDLE_IDENTIFIER = "Anthony.Pursuit-Core-iOS-Episodes-from-Online";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

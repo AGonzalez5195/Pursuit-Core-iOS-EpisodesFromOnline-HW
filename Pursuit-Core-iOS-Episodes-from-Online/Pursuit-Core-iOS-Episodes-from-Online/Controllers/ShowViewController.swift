@@ -43,8 +43,7 @@ class showViewController: UIViewController {
             let selectedShow = filteredShows[selectedIndexPath.row]
             let selectedShowIDURl = "http://api.tvmaze.com/shows/\(selectedShow.id)/episodes"
             destVC.currentShowURL = selectedShowIDURl
-            destVC.currentShowName = selectedShow.name
-            
+            destVC.navigationItem.title = selectedShow.name
             let backItem = UIBarButtonItem()
             backItem.title = "Shows"
             navigationItem.backBarButtonItem = backItem // This will show in the next view controller being pushed
@@ -75,6 +74,19 @@ class showViewController: UIViewController {
         searchBar.delegate = self
     }
     
+    private func setCellDesign(cell: ShowTableViewCell){
+        cell.backgroundColor = .clear
+        cell.showNameLabel.textColor = .white
+        cell.showRatingLabel.textColor = .white
+        let clearBG = UIView()
+        clearBG.backgroundColor = UIColor.clear
+        cell.selectedBackgroundView = clearBG
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: animated)
@@ -84,6 +96,7 @@ class showViewController: UIViewController {
         super.viewWillDisappear(animated)
         navigationController?.setNavigationBarHidden(false, animated: animated)
     }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -105,6 +118,7 @@ extension showViewController: UITableViewDataSource {
         
         showCell.showNameLabel.text = currentShow.name
         showCell.showRatingLabel.text = "Rating: \(currentShow.rating?.average ?? 0.0)"
+        setCellDesign(cell: showCell)
         ImageHelper.shared.fetchImage(urlString: currentShow.image.original) { (result) in
             DispatchQueue.main.async {
                 switch result {
@@ -131,5 +145,9 @@ extension showViewController: UITableViewDelegate {
 extension showViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         searchString = searchText
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
     }
 }
