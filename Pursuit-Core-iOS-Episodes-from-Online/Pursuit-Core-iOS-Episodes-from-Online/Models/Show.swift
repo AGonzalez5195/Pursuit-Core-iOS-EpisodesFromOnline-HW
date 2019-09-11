@@ -63,9 +63,13 @@ struct Show: Codable {
         return sortedArr
     }
     
-    static func getFilteredShows(arr: [Show], searchString: String) -> [Show] {
+    static func getFilteredShowsByName(arr: [Show], searchString: String) -> [Show] {
         return arr.filter{$0.name.lowercased().contains(searchString.lowercased())}
     }
+    static func getFilteredShowsByGenre(arr: [Show], searchString: String) -> [Show] {
+        return arr.filter{$0.genres.joinedStringFromArray.lowercased().contains(searchString.lowercased())}
+    }
+    
 }
 
 struct Image: Codable {

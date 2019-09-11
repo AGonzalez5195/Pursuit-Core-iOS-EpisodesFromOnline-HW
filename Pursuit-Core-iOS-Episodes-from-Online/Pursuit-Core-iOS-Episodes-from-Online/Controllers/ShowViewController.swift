@@ -24,7 +24,11 @@ class showViewController: UIViewController {
         get {
             guard let searchString = searchString else { return shows }
             guard searchString != ""  else { return shows }
-            return Show.getFilteredShows(arr: shows, searchString: searchString)
+            switch searchBar.selectedScopeButtonIndex {
+            case 0: return Show.getFilteredShowsByName(arr: shows, searchString: searchString)
+            case 1: return Show.getFilteredShowsByGenre(arr: shows, searchString: searchString)
+            default: return shows
+            }
         }
     }
     
@@ -143,7 +147,7 @@ extension showViewController: UITableViewDataSource {
 
 extension showViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 240
+        return 270
     }
 }
 
@@ -156,4 +160,31 @@ extension showViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
     }
+  
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.showsScopeBar = false
+        searchBar.setShowsCancelButton(false, animated: true)
+        searchBar.resignFirstResponder()
+        searchBar.sizeToFit()
+    }
+    
+    func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
+        searchBar.showsScopeBar = true
+        searchBar.setShowsCancelButton(true, animated: true)
+        searchBar.sizeToFit()
+        return true
+    }
+    
+    func searchBarShouldEndEditing(_ searchBar: UISearchBar) -> Bool {
+        searchBar.showsScopeBar = false
+        searchBar.setShowsCancelButton(false, animated: true)
+        searchBar.sizeToFit()
+       
+        return true
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
+        tableView.reloadData()
+    }
 }
+

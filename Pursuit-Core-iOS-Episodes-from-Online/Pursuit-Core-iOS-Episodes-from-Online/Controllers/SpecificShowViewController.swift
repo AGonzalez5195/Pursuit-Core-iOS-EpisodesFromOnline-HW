@@ -80,6 +80,7 @@ class SpecificShowViewController: UIViewController {
     private func setCellText(ep: showEpisode, cell: showEpisodesTableViewCell) {
         cell.episodeNameLabel.text = ep.name
         cell.seasonEpisodeLabel.text = "S\(ep.season) E\(ep.number)"
+        cell.runTimeLabel.text = "\(ep.runtime) min"
     }
     
     override func viewDidLoad() {
@@ -112,7 +113,7 @@ extension SpecificShowViewController: UITableViewDataSource {
 
 extension SpecificShowViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 140
+        return 250
     }
 }
 

@@ -40,10 +40,9 @@ class detailViewController: UIViewController {
     private func setLabelColors(){
         [episodeNameLabel, seasonEpisodeLabel, airDateLabel].forEach{$0?.textColor = .white}
         descriptionText.textColor = .white
-        descriptionText.backgroundColor = UIColor(displayP3Red: 0.098, green: 0.098, blue: 0.098, alpha: 1)
-        view.backgroundColor = UIColor(displayP3Red: 0.098, green: 0.098, blue: 0.098, alpha: 1)
+        descriptionText.backgroundColor = .black
+        view.backgroundColor = .black
     }
-    
     private func setLabelText() {
         episodeNameLabel.text = currentEpisode.name
         seasonEpisodeLabel.text = "Season: \(currentEpisode.season) Episode: \(currentEpisode.number)"
@@ -67,5 +66,11 @@ class detailViewController: UIViewController {
         setLabelText()
         setLabelColors()
         loadCurrentEpisodeImage()
+        
+        let gradient: CAGradientLayer = CAGradientLayer()
+        gradient.frame = episodeImage.frame
+        gradient.colors = [UIColor.clear.cgColor, UIColor.black.cgColor]
+        gradient.locations = [0.0, 0.9]
+        episodeImage.layer.insertSublayer(gradient, at: 5)
     }
 }

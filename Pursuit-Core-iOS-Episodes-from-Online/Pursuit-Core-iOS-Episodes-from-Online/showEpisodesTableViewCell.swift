@@ -14,6 +14,8 @@ class showEpisodesTableViewCell: UITableViewCell {
     @IBOutlet weak var seasonEpisodeLabel: UILabel!
     @IBOutlet weak var episodeNameLabel: UILabel!
     
+    @IBOutlet weak var runTimeLabel: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
     }
