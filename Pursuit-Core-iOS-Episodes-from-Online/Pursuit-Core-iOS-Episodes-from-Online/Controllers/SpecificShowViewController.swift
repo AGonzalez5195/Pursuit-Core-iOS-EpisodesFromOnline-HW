@@ -20,7 +20,8 @@ class SpecificShowViewController: UIViewController {
     }
     var currentShowURL = String()
     
-    var biggest = String()
+    var holdThisShit = [Int]()
+
     
     //MARK: -- Functions
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -73,7 +74,6 @@ class SpecificShowViewController: UIViewController {
             }
         } else {
             cell.episodeImage.image = UIImage(named: "noImage")
-            
         }
     }
     
@@ -88,7 +88,7 @@ class SpecificShowViewController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         getSelectedShowData(newshowURL: currentShowURL)
-        print(biggest)
+        print(holdThisShit)
     }
 }
 
