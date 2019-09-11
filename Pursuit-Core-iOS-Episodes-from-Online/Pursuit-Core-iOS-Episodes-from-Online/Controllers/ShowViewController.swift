@@ -77,9 +77,28 @@ class showViewController: UIViewController {
     private func setCellDesign(cell: ShowTableViewCell){
         [cell.showNameLabel, cell.genreLabel].forEach{$0?.textColor = .white}
         cell.backgroundColor = .clear
-        let clearBG = UIView()
-        clearBG.backgroundColor = UIColor.clear
-        cell.selectedBackgroundView = clearBG
+        let clearBGView = UIView()
+        clearBGView.backgroundColor = UIColor.clear
+        cell.selectedBackgroundView = clearBGView
+    }
+    
+    private func setCellImage(ep: Show, cell: ShowTableViewCell) {
+        ImageHelper.shared.fetchImage(urlString: ep.image.original) { (result) in
+            DispatchQueue.main.async {
+                switch result {
+                case .failure(let error):
+                    print(error)
+                case .success(let imageFromOnline):
+                    cell.showImage.image = imageFromOnline
+                }
+            }
+        }
+    }
+    
+    private func setCellText(ep: Show, cell: ShowTableViewCell){
+        cell.showNameLabel.text = ep.name
+        cell.showRatingLabel.text = "Rating: \(ep.rating?.average ?? 0.0)"
+        cell.genreLabel.text = "\(ep.genres.joinedStringFromArray.capitalized)"
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -96,7 +115,6 @@ class showViewController: UIViewController {
         navigationController?.setNavigationBarHidden(false, animated: animated)
     }
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureDelegateDataSources()
@@ -111,23 +129,12 @@ extension showViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let currentShow = filteredShows[indexPath.row]
         let showCell = tableView.dequeueReusableCell(withIdentifier: "showCell", for: indexPath) as! ShowTableViewCell
-        
-        showCell.showNameLabel.text = currentShow.name
-        showCell.showRatingLabel.text = "Rating: \(currentShow.rating?.average ?? 0.0)"
-        showCell.genreLabel.text = "\(currentShow.genres.minimalDescription.capitalized)"
+        let currentShow = filteredShows[indexPath.row]
         setCellDesign(cell: showCell)
-        ImageHelper.shared.fetchImage(urlString: currentShow.image.original) { (result) in
-            DispatchQueue.main.async {
-                switch result {
-                case .failure(let error):
-                    print(error)
-                case .success(let imageFromOnline):
-                    showCell.showImage.image = imageFromOnline
-                }
-            }
-        }
+        setCellText(ep: currentShow, cell: showCell)
+        setCellImage(ep: currentShow, cell: showCell)
+        
         return showCell
     }
 }
@@ -148,12 +155,5 @@ extension showViewController: UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
-    }
-}
-
-
-extension Sequence {
-    var minimalDescription: String {
-        return map { "\($0)" }.joined(separator: ", ")
     }
 }

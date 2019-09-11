@@ -15,12 +15,12 @@ class SpecificShowViewController: UIViewController {
     //MARK: -- Properties
     var episodes = [showEpisode]() {
         didSet {
-            
             tableView.reloadData()
         }
     }
     var currentShowURL = String()
     
+    var biggest = String()
     
     //MARK: -- Functions
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -59,12 +59,35 @@ class SpecificShowViewController: UIViewController {
         cell.selectedBackgroundView = clearBG
     }
     
+    private func setCellImage(ep: showEpisode, cell: showEpisodesTableViewCell) {
+        if let currentImage = ep.image?.original {
+            ImageHelper.shared.fetchImage(urlString: currentImage) { (result) in
+                DispatchQueue.main.async {
+                    switch result {
+                    case .failure(let error):
+                        print(error)
+                    case .success(let imageFromOnline):
+                        cell.episodeImage.image = imageFromOnline
+                    }
+                }
+            }
+        } else {
+            cell.episodeImage.image = UIImage(named: "noImage")
+            
+        }
+    }
+    
+    private func setCellText(ep: showEpisode, cell: showEpisodesTableViewCell) {
+        cell.episodeNameLabel.text = ep.name
+        cell.seasonEpisodeLabel.text = "S\(ep.season) E\(ep.number)"
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.dataSource = self
         tableView.delegate = self
         getSelectedShowData(newshowURL: currentShowURL)
-        
+        print(biggest)
     }
 }
 
@@ -77,22 +100,10 @@ extension SpecificShowViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let currentEpisode = episodes[indexPath.row]
         let episodeCell = tableView.dequeueReusableCell(withIdentifier: "episodeCell", for: indexPath) as! showEpisodesTableViewCell
-        episodeCell.episodeNameLabel.text = currentEpisode.name
-        episodeCell.seasonEpisodeLabel.text = "S\(currentEpisode.season) E\(currentEpisode.number)"
-        
+    
         setCellDesign(cell: episodeCell)
-        if let currentImage = currentEpisode.image?.original {
-            ImageHelper.shared.fetchImage(urlString: currentImage) { (result) in
-                DispatchQueue.main.async {
-                    switch result {
-                    case .failure(let error):
-                        print(error)
-                    case .success(let imageFromOnline):
-                        episodeCell.episodeImage.image = imageFromOnline
-                    }
-                }
-            }
-        } else { episodeCell.episodeImage.image = UIImage(named: "noImage") }
+        setCellText(ep: currentEpisode, cell: episodeCell)
+        setCellImage(ep: currentEpisode, cell: episodeCell)
         return episodeCell
     }
 }
@@ -106,4 +117,10 @@ extension SpecificShowViewController: UITableViewDelegate {
 }
 
 
+
+// IDEAS:
+//Get last cell's season label text and convert that a string
+//Iterate through each of the episodes in the episode array, append the episode.season number to an array of Ints and then either:
+// - Convert it into a set and then back into array, followed by reordering it.
+// -Get the .max() result
 
