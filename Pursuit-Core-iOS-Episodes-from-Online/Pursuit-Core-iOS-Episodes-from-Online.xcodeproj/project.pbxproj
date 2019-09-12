@@ -91,9 +91,9 @@
 		976F550D2326AAEC00E305A1 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				976F55082326A0F900E305A1 /* AppError.swift */,
 				976F55042326A08C00E305A1 /* NetworkManager.swift */,
 				976F55062326A0D200E305A1 /* ImageHelper.swift */,
-				976F55082326A0F900E305A1 /* AppError.swift */,
 				976F550A2326A11200E305A1 /* Show.swift */,
 				976F55122326B0C200E305A1 /* showEpisode.swift */,
 			);

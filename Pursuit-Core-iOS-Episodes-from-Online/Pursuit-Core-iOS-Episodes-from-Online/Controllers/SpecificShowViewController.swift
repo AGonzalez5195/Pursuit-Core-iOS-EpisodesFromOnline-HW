@@ -60,9 +60,9 @@ class SpecificShowViewController: UIViewController {
         cell.selectedBackgroundView = clearBG
     }
     
-    private func setCellImage(ep: showEpisode, cell: showEpisodesTableViewCell) {
+    private func setCellImage(ep: showEpisode, cell: showEpisodesTableViewCell, placeholder: UIImage? = nil) {
         if let currentImage = ep.image?.original {
-            ImageHelper.shared.fetchImage(urlString: currentImage) { (result) in
+            ImageHelper.shared.fetchImage(urlString: currentImage) { [weak self] (result) in
                 DispatchQueue.main.async {
                     switch result {
                     case .failure(let error):

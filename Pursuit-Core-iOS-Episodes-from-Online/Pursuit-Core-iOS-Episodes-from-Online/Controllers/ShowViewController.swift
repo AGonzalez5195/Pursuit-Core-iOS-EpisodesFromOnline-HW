@@ -14,15 +14,14 @@ class showViewController: UIViewController {
     @IBOutlet weak var searchBar: UISearchBar!
     
     //MARK: -- Properties
-    var shows = [Show]() {
+    var shows = [TVMaze]() {
         didSet{
             tableView.reloadData()
         }
     }
     
-    var filteredShows: [Show] {
+    var filteredShows: [TVMaze] {
         get {
-            guard let searchString = searchString else { return shows }
             guard searchString != ""  else { return shows }
             switch searchBar.selectedScopeButtonIndex {
             case 0: return Show.getFilteredShowsByName(arr: shows, searchString: searchString)
@@ -33,7 +32,12 @@ class showViewController: UIViewController {
     }
     
     
-    var searchString: String? = nil { didSet { self.tableView.reloadData()} }
+    var searchString = "" {
+        didSet {
+            let userEnteredString = searchString.replacingOccurrences(of: " ", with: "%20").lowercased()
+            loadData(newString: userEnteredString)
+        }
+    }
     
     //MARK: -- Functions
     
@@ -45,28 +49,26 @@ class showViewController: UIViewController {
             guard let destVC = segue.destination as? SpecificShowViewController else { fatalError("Unexpected segue VC") }
             guard let selectedIndexPath = tableView.indexPathForSelectedRow else { fatalError("No row selected") }
             let selectedShow = filteredShows[selectedIndexPath.row]
-            let selectedShowIDURl = "http://api.tvmaze.com/shows/\(selectedShow.id)/episodes"
+            let selectedShowIDURl = "http://api.tvmaze.com/shows/\(selectedShow.show.id)/episodes"
             destVC.currentShowURL = selectedShowIDURl
-            destVC.navigationItem.title = selectedShow.name
+            destVC.navigationItem.title = selectedShow.show.name
             let backItem = UIBarButtonItem()
             backItem.title = "Shows"
             navigationItem.backBarButtonItem = backItem // This will show in the next view controller being pushed
-            
             
         default:
             fatalError("unexpected segue identifier")
         }
     }
     
-    private func loadData(){
-        Show.getShowData { (result) in
+    private func loadData(newString: String){
+        TVMaze.getShowData(searchStr: newString) { (result) in
             DispatchQueue.main.async {
                 switch result {
                 case .failure(let error):
                     print(error)
                 case .success(let showData):
                     self.shows = showData
-                    self.shows = Show.getSortedArray(arr: self.shows)
                 }
             }
         }
@@ -86,23 +88,27 @@ class showViewController: UIViewController {
         cell.selectedBackgroundView = clearBGView
     }
     
-    private func setCellImage(ep: Show, cell: ShowTableViewCell) {
-        ImageHelper.shared.fetchImage(urlString: ep.image.original) { (result) in
-            DispatchQueue.main.async {
-                switch result {
-                case .failure(let error):
-                    print(error)
-                case .success(let imageFromOnline):
-                    cell.showImage.image = imageFromOnline
+    private func setCellImage(show: Show, cell: ShowTableViewCell) {
+        if let showImage = show.image?.original {
+            ImageHelper.shared.fetchImage(urlString: showImage) { (result) in
+                DispatchQueue.main.async {
+                    switch result {
+                    case .failure(let error):
+                        print(error)
+                    case .success(let imageFromOnline):
+                        cell.showImage.image = imageFromOnline
+                    }
                 }
             }
+        } else {
+            cell.showImage.image = UIImage(named: "noImage")
         }
     }
     
-    private func setCellText(ep: Show, cell: ShowTableViewCell){
-        cell.showNameLabel.text = ep.name
-        cell.showRatingLabel.text = "Rating: \(ep.rating?.average ?? 0.0)"
-        cell.genreLabel.text = "\(ep.genres.joinedStringFromArray.capitalized)"
+    private func setCellText(show: Show, cell: ShowTableViewCell){
+        cell.showNameLabel.text = show.name
+        cell.showRatingLabel.text = "Rating: \(show.rating?.average ?? 0.0)"
+        cell.genreLabel.text = "\(show.genres.joinedStringFromArray.capitalized)"
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -122,7 +128,6 @@ class showViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureDelegateDataSources()
-        loadData()
     }
 }
 
@@ -136,8 +141,8 @@ extension showViewController: UITableViewDataSource {
         let showCell = tableView.dequeueReusableCell(withIdentifier: "showCell", for: indexPath) as! ShowTableViewCell
         let currentShow = filteredShows[indexPath.row]
         setCellDesign(cell: showCell)
-        setCellText(ep: currentShow, cell: showCell)
-        setCellImage(ep: currentShow, cell: showCell)
+        setCellText(show: currentShow.show, cell: showCell)
+        setCellImage(show: currentShow.show, cell: showCell)
         
         return showCell
     }
@@ -154,13 +159,15 @@ extension showViewController: UITableViewDelegate {
 
 extension showViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
         searchString = searchText
     }
+    
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
     }
-  
+    
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.showsScopeBar = false
         searchBar.setShowsCancelButton(false, animated: true)
@@ -179,7 +186,7 @@ extension showViewController: UISearchBarDelegate {
         searchBar.showsScopeBar = false
         searchBar.setShowsCancelButton(false, animated: true)
         searchBar.sizeToFit()
-       
+        
         return true
     }
     

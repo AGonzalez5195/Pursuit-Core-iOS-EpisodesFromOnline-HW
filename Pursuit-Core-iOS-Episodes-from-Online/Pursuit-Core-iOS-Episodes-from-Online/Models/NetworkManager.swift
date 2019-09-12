@@ -52,6 +52,6 @@ class NetworkManager {
             default:
                 completionHandler(.failure(.other(errorDescription: "Wrong Status Code")))
             }
-            }.resume()
+            }.resume() //New tasks begin in a suspended state. So the reusme method must be called to start the task. 
     }
 }

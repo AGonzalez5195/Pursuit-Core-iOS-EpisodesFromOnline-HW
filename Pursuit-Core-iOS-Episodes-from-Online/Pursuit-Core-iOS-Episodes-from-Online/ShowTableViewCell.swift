@@ -10,6 +10,7 @@ import UIKit
 
 class ShowTableViewCell: UITableViewCell {
 
+    let activityIndicator = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.gray)
     
     @IBOutlet weak var showImage: UIImageView!
     
@@ -17,7 +18,6 @@ class ShowTableViewCell: UITableViewCell {
     
     @IBOutlet weak var showRatingLabel: UILabel!
     
-    @IBOutlet weak var idLabel: UILabel!
     
     @IBOutlet weak var genreLabel: UILabel!
     
