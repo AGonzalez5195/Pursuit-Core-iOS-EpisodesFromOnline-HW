@@ -2,4 +2,70 @@
 <Bucket
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Pursuit-Core-iOS-Episodes-from-Online/Controllers/ShowViewController.swift"
+            timestampString = "590018520.0985579"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "72"
+            endingLineNumber = "72"
+            landmarkName = "loadData(newString:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Pursuit-Core-iOS-Episodes-from-Online/Controllers/ShowViewController.swift"
+            timestampString = "590018520.099032"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "68"
+            endingLineNumber = "68"
+            landmarkName = "loadData(newString:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Result&lt;Swift.Array&lt;Pursuit_Core_iOS_Episodes_from_Online.TVMaze&gt;, Pursuit_Core_iOS_Episodes_from_Online.AppError&gt;) -&gt; () in Pursuit_Core_iOS_Episodes_from_Online.showViewController.(loadData in _902AB7ED2F2AF354AF3311DEFA7BD455)(newString: Swift.String) -&gt; ()"
+                  moduleName = "Pursuit-Core-iOS-Episodes-from-Online"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/anthonygonzalez/Desktop/Projects/Episodes%20From%20Online/Pursuit-Core-iOS-Episodes-from-Online/Pursuit-Core-iOS-Episodes-from-Online/Controllers/ShowViewController.swift"
+                  timestampString = "590007078.443529"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "80"
+                  endingLineNumber = "80"
+                  offsetFromSymbolStart = "192">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; () in closure #1 (Swift.Result&lt;Swift.Array&lt;Pursuit_Core_iOS_Episodes_from_Online.TVMaze&gt;, Pursuit_Core_iOS_Episodes_from_Online.AppError&gt;) -&gt; () in Pursuit_Core_iOS_Episodes_from_Online.showViewController.(loadData in _902AB7ED2F2AF354AF3311DEFA7BD455)(newString: Swift.String) -&gt; ()"
+                  moduleName = "Pursuit-Core-iOS-Episodes-from-Online"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/anthonygonzalez/Desktop/Projects/Episodes%20From%20Online/Pursuit-Core-iOS-Episodes-from-Online/Pursuit-Core-iOS-Episodes-from-Online/Controllers/ShowViewController.swift"
+                  timestampString = "590007078.445907"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "82"
+                  endingLineNumber = "82"
+                  offsetFromSymbolStart = "186">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

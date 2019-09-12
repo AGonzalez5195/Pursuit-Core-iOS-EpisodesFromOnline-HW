@@ -20,8 +20,6 @@ class SpecificShowViewController: UIViewController {
     }
     var currentShowURL = String()
     
-    var holdThisShit = [Int]()
-
     
     //MARK: -- Functions
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -53,16 +51,16 @@ class SpecificShowViewController: UIViewController {
     
     private func setCellDesign(cell: showEpisodesTableViewCell){
         cell.backgroundColor = .clear
-        cell.episodeNameLabel.textColor = .white
-        cell.seasonEpisodeLabel.textColor = .white
-        let clearBG = UIView()
-        clearBG.backgroundColor = UIColor.clear
-        cell.selectedBackgroundView = clearBG
+        [cell.episodeNameLabel, cell.seasonEpisodeLabel].forEach{$0?.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+            let clearBG = UIView()
+            clearBG.backgroundColor = UIColor.clear
+            cell.selectedBackgroundView = clearBG
+        }
     }
     
-    private func setCellImage(ep: showEpisode, cell: showEpisodesTableViewCell, placeholder: UIImage? = nil) {
+    private func setCellImage(ep: showEpisode, cell: showEpisodesTableViewCell) {
         if let currentImage = ep.image?.original {
-            ImageHelper.shared.fetchImage(urlString: currentImage) { [weak self] (result) in
+            ImageHelper.shared.fetchImage(urlString: currentImage) { (result) in
                 DispatchQueue.main.async {
                     switch result {
                     case .failure(let error):
@@ -73,14 +71,18 @@ class SpecificShowViewController: UIViewController {
                 }
             }
         } else {
-            cell.episodeImage.image = UIImage(named: "noImage")
+            cell.episodeImage.image = #imageLiteral(resourceName: "noImage")
         }
     }
     
     private func setCellText(ep: showEpisode, cell: showEpisodesTableViewCell) {
         cell.episodeNameLabel.text = ep.name
         cell.seasonEpisodeLabel.text = "S\(ep.season) E\(ep.number)"
-        cell.runTimeLabel.text = "\(ep.runtime) min"
+        if let epRuntime = ep.runtime {
+            cell.runTimeLabel.text = "\(epRuntime) min"
+        } else {
+            cell.runTimeLabel.text = ""
+        }
     }
     
     override func viewDidLoad() {
@@ -88,7 +90,6 @@ class SpecificShowViewController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         getSelectedShowData(newshowURL: currentShowURL)
-        print(holdThisShit)
     }
 }
 
@@ -101,7 +102,7 @@ extension SpecificShowViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let currentEpisode = episodes[indexPath.row]
         let episodeCell = tableView.dequeueReusableCell(withIdentifier: "episodeCell", for: indexPath) as! showEpisodesTableViewCell
-    
+        
         setCellDesign(cell: episodeCell)
         setCellText(ep: currentEpisode, cell: episodeCell)
         setCellImage(ep: currentEpisode, cell: episodeCell)

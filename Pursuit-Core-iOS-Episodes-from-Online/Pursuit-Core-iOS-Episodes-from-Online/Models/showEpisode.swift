@@ -14,7 +14,7 @@ struct showEpisode: Codable {
     let season: Int
     let number: Int
     let summary: String?
-    let runtime: Int
+    let runtime: Int?
     let airdate: String
     
     static func getEpisodeData(showURL: String, completionHandler: @escaping (Result<[showEpisode],AppError>) -> () ) {
