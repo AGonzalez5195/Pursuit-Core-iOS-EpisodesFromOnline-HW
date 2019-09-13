@@ -10,6 +10,9 @@ import UIKit
 
 class PopUpViewController: UIViewController {
 
+    
+    var currentShow: Show!
+    
     @IBOutlet weak var popUpView: UIView!
     @IBOutlet weak var showName: UILabel!
     
@@ -49,5 +52,7 @@ class PopUpViewController: UIViewController {
         super.viewDidLoad()
         self.showAnimate()
         popUpView.layer.cornerRadius = 20
+        showName.text = currentShow.name
+        
     }
 }

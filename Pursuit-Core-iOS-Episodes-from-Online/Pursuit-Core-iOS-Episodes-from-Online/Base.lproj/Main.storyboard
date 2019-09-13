@@ -18,6 +18,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ER5-8u-CYP">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" insetsLayoutMarginsFromSafeArea="NO" id="upa-OK-Z2V">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                </view>
+                                <blurEffect style="dark"/>
+                            </visualEffectView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="bg" translatesAutoresizingMaskIntoConstraints="NO" id="8qr-0x-eyN">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -58,17 +67,11 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoLight" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jr1-la-A6K">
-                                                    <rect key="frame" x="283" y="233" width="22" height="22"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <connections>
-                                                        <action selector="showPopup:" destination="BYZ-38-t0r" eventType="touchUpInside" id="tC8-Gt-ZgA"/>
-                                                    </connections>
-                                                </button>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="genreLabel" destination="9PD-YQ-XgA" id="u1R-dP-itg"/>
+                                            <outlet property="infoButton" destination="Jr1-la-A6K" id="HSy-1V-6dh"/>
                                             <outlet property="showImage" destination="QPW-yh-kf1" id="Pn8-fd-dq9"/>
                                             <outlet property="showNameLabel" destination="k6w-Ka-eir" id="vWr-Ap-Efe"/>
                                             <outlet property="showRatingLabel" destination="aaM-u8-3Ah" id="3Mg-Fb-CYW"/>
@@ -86,15 +89,6 @@
                                     <string>Genre</string>
                                 </scopeButtonTitles>
                             </searchBar>
-                            <visualEffectView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ER5-8u-CYP">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" insetsLayoutMarginsFromSafeArea="NO" id="upa-OK-Z2V">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                </view>
-                                <blurEffect style="dark"/>
-                            </visualEffectView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -110,38 +104,12 @@
                     </view>
                     <navigationItem key="navigationItem" id="oKd-kd-Top"/>
                     <connections>
-                        <outlet property="popUpView" destination="Uk2-D0-P1o" id="0BA-X2-Cxf"/>
                         <outlet property="searchBar" destination="shA-yt-mIo" id="ehe-rS-axt"/>
                         <outlet property="tableView" destination="Vg6-nd-H1Y" id="ZcX-Ls-06x"/>
                         <outlet property="visualEffectView" destination="ER5-8u-CYP" id="s40-bv-c6v"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-                <view contentMode="scaleToFill" id="Uk2-D0-P1o">
-                    <rect key="frame" x="0.0" y="0.0" width="310" height="444"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d6M-bj-C3f">
-                            <rect key="frame" x="125.79086580912872" y="315" width="56.000000000000114" height="30"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <state key="normal" title="Done">
-                                <color key="titleColor" red="0.83936984569999995" green="1" blue="0.58600378220000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                            </state>
-                            <connections>
-                                <action selector="dismissPopup:" destination="BYZ-38-t0r" eventType="touchUpInside" id="0aK-x4-1px"/>
-                            </connections>
-                        </button>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s6b-OW-qTo">
-                            <rect key="frame" x="103.23054471993737" y="91" width="101.99999999999989" height="67.000000000000114"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="26"/>
-                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                    </subviews>
-                    <color key="backgroundColor" red="0.1215686275" green="0.12941176469999999" blue="0.14117647059999999" alpha="0.70408818493150682" colorSpace="custom" customColorSpace="sRGB"/>
-                    <viewLayoutGuide key="safeArea" id="2gP-Tg-2mZ"/>
-                </view>
                 <view contentMode="scaleToFill" id="Xpq-ln-CtD">
                     <rect key="frame" x="0.0" y="0.0" width="278" height="415"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -207,7 +175,7 @@
                     </connections>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="1165" y="-1384"/>
+            <point key="canvasLocation" x="2112" y="-887"/>
         </scene>
         <!--Person View Controller-->
         <scene sceneID="tIj-ev-Obk">
@@ -251,7 +219,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="p0V-ZI-KJc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2270" y="-690"/>
+            <point key="canvasLocation" x="3171" y="-887"/>
         </scene>
         <!--Show Name-->
         <scene sceneID="Obt-cy-1Th">
@@ -336,7 +304,20 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="5JV-D4-SZZ"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Show Name" id="rhz-Cz-6hC"/>
+                    <navigationItem key="navigationItem" title="Show Name" id="rhz-Cz-6hC">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="xmL-sm-aQG">
+                            <button key="customView" hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoLight" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="Jr1-la-A6K">
+                                <rect key="frame" x="372" y="11" width="22" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="showPopup:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ORq-L6-gFi"/>
+                                    <action selector="showPopup:" destination="nJ5-Fy-yW0" eventType="touchUpInside" id="WFU-vA-gQt"/>
+                                    <segue destination="vps-DK-mTV" kind="presentation" identifier="segueToShowDetail" id="whO-zs-3aM"/>
+                                </connections>
+                            </button>
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="3bP-Ru-3gZ" id="rbE-gN-D7x"/>
                     </connections>

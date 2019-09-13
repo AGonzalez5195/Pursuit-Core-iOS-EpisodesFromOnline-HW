@@ -13,18 +13,15 @@ class ShowTableViewCell: UITableViewCell {
     let activityIndicator = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.gray)
     
     @IBOutlet weak var showImage: UIImageView!
-    
     @IBOutlet weak var showNameLabel: UILabel!
-    
     @IBOutlet weak var showRatingLabel: UILabel!
-    
-    
     @IBOutlet weak var genreLabel: UILabel!
+   
     
     override func awakeFromNib() {
         super.awakeFromNib()
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)  
     }

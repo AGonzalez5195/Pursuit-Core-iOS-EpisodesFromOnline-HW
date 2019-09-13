@@ -89,9 +89,8 @@
 			children = (
 				CD01CD5D232178AF002D0255 /* ShowViewController.swift */,
 				976F550E2326B01400E305A1 /* SpecificShowViewController.swift */,
-				976F558D232A85E200E305A1 /* ShowDetailViewController.swift */,
+				976F559D232BD24C00E305A1 /* Not Implemeted. Ignore. */,
 				976F55142326B89E00E305A1 /* detailViewController.swift */,
-				976F558B232A0ED000E305A1 /* PersonViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -102,11 +101,20 @@
 				976F55082326A0F900E305A1 /* AppError.swift */,
 				976F55042326A08C00E305A1 /* NetworkManager.swift */,
 				976F55062326A0D200E305A1 /* ImageHelper.swift */,
-				976F5589232A04FC00E305A1 /* Person.swift */,
 				976F550A2326A11200E305A1 /* Show.swift */,
 				976F55122326B0C200E305A1 /* showEpisode.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		976F559D232BD24C00E305A1 /* Not Implemeted. Ignore. */ = {
+			isa = PBXGroup;
+			children = (
+				976F5589232A04FC00E305A1 /* Person.swift */,
+				976F558D232A85E200E305A1 /* ShowDetailViewController.swift */,
+				976F558B232A0ED000E305A1 /* PersonViewController.swift */,
+			);
+			path = "Not Implemeted. Ignore.";
 			sourceTree = "<group>";
 		};
 		CD01CD4F232178AF002D0255 = {

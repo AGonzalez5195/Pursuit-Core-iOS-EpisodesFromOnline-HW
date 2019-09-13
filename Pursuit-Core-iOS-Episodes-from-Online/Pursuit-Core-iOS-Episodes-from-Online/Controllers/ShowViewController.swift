@@ -9,15 +9,16 @@
 import UIKit
 
 class showViewController: UIViewController {
+ 
+    
     
     //MARK: -- Outlets
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var visualEffectView: UIVisualEffectView!
-    @IBOutlet var popUpView: UIView!
     
     //MARK: -- Properties
-    var effect: UIVisualEffect!
+//    var effect: UIVisualEffect!
     var shows = [TVMaze]() {
         didSet{
             tableView.reloadData()
@@ -30,27 +31,20 @@ class showViewController: UIViewController {
             loadData(newString: userEnteredString)
         }
     }
-    
-    
-    
-    //MARK: --IBActions
-    @IBAction func showPopup(_ sender: UIButton) {
-        animateIn()
-    }
-    
-    @IBAction func dismissPopup(_ sender: UIButton) {
-        animateOut()
-    }
+        
+   
     //MARK: -- Functions
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let segueIdentifer = segue.identifier else {fatalError("No identifier in segue")}
         
         switch segueIdentifer {
+        
         case "segueToEpisodes":
             guard let destVC = segue.destination as? SpecificShowViewController else { fatalError("Unexpected segue VC") }
             guard let selectedIndexPath = tableView.indexPathForSelectedRow else { fatalError("No row selected") }
             let selectedShow = shows[selectedIndexPath.row]
+            destVC.showToPassToPopUp = selectedShow.show
             let selectedShowIDURl = "http://api.tvmaze.com/shows/\(selectedShow.show.id)/episodes"
             destVC.currentShowURL = selectedShowIDURl
             destVC.navigationItem.title = selectedShow.show.name
@@ -102,13 +96,15 @@ class showViewController: UIViewController {
                     }
                 }
             }
-        } else { cell.showImage.image = #imageLiteral(resourceName: "noImage") }
+        } else { cell.showImage.image = #imageLiteral(resourceName: "noImage")
+            
+        }
     }
     
     private func setCellText(show: Show, cell: ShowTableViewCell){
         cell.showNameLabel.text = show.name
         if let showRating = show.rating?.average {
-            cell.showRatingLabel.text = "Rating: \(showRating)"
+        cell.showRatingLabel.text = "Rating: \(showRating)"
         } else {
             cell.showRatingLabel.text = "No Rating Available"
         }
@@ -130,37 +126,11 @@ class showViewController: UIViewController {
         navigationController?.setNavigationBarHidden(false, animated: animated)
     }
     
-    private func animateIn() {
-        self.view.addSubview(popUpView)
-        popUpView.center = self.view.center
-        popUpView.transform = CGAffineTransform.init(scaleX: 1.3, y: 1.3)
-        popUpView.alpha = 0
-        popUpView.layoutIfNeeded()
-        
-        UIView.animate(withDuration: 0.4) {
-            self.visualEffectView.isHidden = false
-            self.popUpView.alpha = 1
-            self.popUpView.transform = CGAffineTransform.identity
-        }
-    }
-    
-    private func animateOut() {
-        UIView.animate(withDuration: 0.3, animations:{
-            self.popUpView.transform = CGAffineTransform.init(scaleX: 1.3, y: 1.3)
-            self.popUpView.alpha = 0
-            self.visualEffectView.effect = nil
-        }) {(success: Bool) in
-            self.popUpView.removeFromSuperview()
-            
-        }
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureDelegateDataSources()
         visualEffectView.isHidden = true
-        popUpView.layer.cornerRadius = 20
-        
     }
 }
 
@@ -176,7 +146,7 @@ extension showViewController: UITableViewDataSource {
         setCellDesign(cell: showCell)
         setCellText(show: currentShow.show, cell: showCell)
         setCellImage(show: currentShow.show, cell: showCell)
-        
+  
         return showCell
     }
 }
@@ -205,20 +175,3 @@ extension showViewController: UISearchBarDelegate {
         tableView.reloadData()
     }
 }
-
-
-
-
-
-
-//var filteredShows: [TVMaze] {
-//    get {
-//        guard searchString != ""  else { return shows }
-//        switch searchBar.selectedScopeButtonIndex {
-//        //            case 0: return Show.getFilteredShowsByName(arr: shows, searchString: searchString)
-//        case 1: return Show.getFilteredShowsByGenre(arr: shows, searchString: searchString)
-//        default: return shows
-//        }
-//    }
-//}
-//
