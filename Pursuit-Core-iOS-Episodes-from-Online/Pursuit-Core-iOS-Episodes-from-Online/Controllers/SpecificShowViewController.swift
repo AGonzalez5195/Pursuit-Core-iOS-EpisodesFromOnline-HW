@@ -19,28 +19,27 @@ class SpecificShowViewController: UIViewController {
         }
     }
     var currentShowURL = String()
-    var showToPassToPopUp: Show!
+//    var showToPassToPopUp: Show!
     
     
 //    MARK: --IBActions
-    @IBAction func showPopup(_ sender: UIButton) {
-      performSegue(withIdentifier: "segueToShowDetail", sender: sender)
-       
-        
-    }
+//    @IBAction func showPopup(_ sender: UIButton) {
+//      performSegue(withIdentifier: "segueToShowDetail", sender: sender)
+//
+//    }
     
     //MARK: -- Functions
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let segueIdentifer = segue.identifier else {fatalError("No identifier in segue")}
         
         switch segueIdentifer {
-        case "segueToShowDetail":
-             guard let popOverVC = segue.destination as? PopUpViewController else { fatalError("Unexpected segue VC") }
-                self.addChild(popOverVC)
-                popOverVC.view.frame = self.view.frame
-                self.view.addSubview(popOverVC.view)
-                popOverVC.didMove(toParent: self)
-                popOverVC.currentShow = showToPassToPopUp
+//        case "segueToShowDetail":
+//             guard let popOverVC = segue.destination as? PopUpViewController else { fatalError("Unexpected segue VC") }
+//                self.addChild(popOverVC)
+//                popOverVC.view.frame = self.view.frame
+//                self.view.addSubview(popOverVC.view)
+//                popOverVC.didMove(toParent: self)
+//                popOverVC.currentShow = showToPassToPopUp
         case "segueToDetail":
             guard let destVC = segue.destination as? detailViewController else { fatalError("Unexpected segue VC") }
             guard let selectedIndexPath = tableView.indexPathForSelectedRow else { fatalError("No row selected") }
@@ -85,9 +84,7 @@ class SpecificShowViewController: UIViewController {
                     }
                 }
             }
-        } else {
-            cell.episodeImage.image = #imageLiteral(resourceName: "noImage")
-        }
+        } else { cell.episodeImage.image = #imageLiteral(resourceName: "noImage") }
     }
     
     private func setCellText(ep: showEpisode, cell: showEpisodesTableViewCell) {
@@ -132,6 +129,12 @@ extension SpecificShowViewController: UITableViewDelegate {
         return 250
     }
 }
+
+
+
+
+
+
 
 
 

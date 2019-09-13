@@ -89,8 +89,8 @@
 			children = (
 				CD01CD5D232178AF002D0255 /* ShowViewController.swift */,
 				976F550E2326B01400E305A1 /* SpecificShowViewController.swift */,
-				976F559D232BD24C00E305A1 /* Not Implemeted. Ignore. */,
 				976F55142326B89E00E305A1 /* detailViewController.swift */,
+				976F559D232BD24C00E305A1 /* Not Implemeted. Ignore. */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -146,8 +146,8 @@
 				976F550223269B5400E305A1 /* ShowTableViewCell.swift */,
 				976F55102326B04300E305A1 /* showEpisodesTableViewCell.swift */,
 				976F5581232887C800E305A1 /* Extensions.swift */,
-				CD01CD62232178B2002D0255 /* Assets.xcassets */,
 				CD01CD64232178B2002D0255 /* LaunchScreen.storyboard */,
+				CD01CD62232178B2002D0255 /* Assets.xcassets */,
 				CD01CD67232178B2002D0255 /* Info.plist */,
 			);
 			path = "Pursuit-Core-iOS-Episodes-from-Online";

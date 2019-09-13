@@ -10,8 +10,6 @@ import UIKit
 
 class showViewController: UIViewController {
  
-    
-    
     //MARK: -- Outlets
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
@@ -34,7 +32,6 @@ class showViewController: UIViewController {
         
    
     //MARK: -- Functions
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let segueIdentifer = segue.identifier else {fatalError("No identifier in segue")}
         
@@ -92,24 +89,18 @@ class showViewController: UIViewController {
                     case .failure(let error):
                         print(error)
                     case .success(let imageFromOnline):
-                        cell.showImage.image = imageFromOnline
-                    }
+                        cell.showImage.image = imageFromOnline }
                 }
             }
-        } else { cell.showImage.image = #imageLiteral(resourceName: "noImage")
-            
-        }
+        } else { cell.showImage.image = #imageLiteral(resourceName: "noImage") }
     }
     
     private func setCellText(show: Show, cell: ShowTableViewCell){
         cell.showNameLabel.text = show.name
         if let showRating = show.rating?.average {
         cell.showRatingLabel.text = "Rating: \(showRating)"
-        } else {
-            cell.showRatingLabel.text = "No Rating Available"
-        }
+        } else { cell.showRatingLabel.text = "No Rating Available" }
         cell.genreLabel.text = show.genres?.joinedStringFromArray.capitalized
-
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -126,13 +117,13 @@ class showViewController: UIViewController {
         navigationController?.setNavigationBarHidden(false, animated: animated)
     }
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureDelegateDataSources()
         visualEffectView.isHidden = true
     }
 }
+
 
 //MARK: -- Datasource Methods
 extension showViewController: UITableViewDataSource {
@@ -152,7 +143,6 @@ extension showViewController: UITableViewDataSource {
 }
 
 //MARK: -- Delegate Methods
-
 extension showViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 270
@@ -165,13 +155,7 @@ extension showViewController: UISearchBarDelegate {
         searchString = searchText
     }
     
-    
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
-    }
-    
-    
-    func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
-        tableView.reloadData()
     }
 }

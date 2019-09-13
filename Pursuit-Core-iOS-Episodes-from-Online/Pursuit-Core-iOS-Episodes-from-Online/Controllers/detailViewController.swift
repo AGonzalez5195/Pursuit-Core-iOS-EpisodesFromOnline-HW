@@ -38,7 +38,6 @@ class detailViewController: UIViewController {
                         self.episodeImage.image = imageFromOnline
                         self.spinner.isHidden = true
                         self.spinner.stopAnimating()
-                        
                     }
                 }
             }
