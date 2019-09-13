@@ -16,7 +16,7 @@ class showViewController: UIViewController {
     @IBOutlet weak var visualEffectView: UIVisualEffectView!
     
     //MARK: -- Properties
-//    var effect: UIVisualEffect!
+//  var effect: UIVisualEffect!
     var shows = [TVMaze]() {
         didSet{
             tableView.reloadData()
@@ -41,7 +41,7 @@ class showViewController: UIViewController {
             guard let destVC = segue.destination as? SpecificShowViewController else { fatalError("Unexpected segue VC") }
             guard let selectedIndexPath = tableView.indexPathForSelectedRow else { fatalError("No row selected") }
             let selectedShow = shows[selectedIndexPath.row]
-            destVC.showToPassToPopUp = selectedShow.show
+//            destVC.showToPassToPopUp = selectedShow.show
             let selectedShowIDURl = "http://api.tvmaze.com/shows/\(selectedShow.show.id)/episodes"
             destVC.currentShowURL = selectedShowIDURl
             destVC.navigationItem.title = selectedShow.show.name
