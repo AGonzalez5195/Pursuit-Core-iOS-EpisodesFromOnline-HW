@@ -67,6 +67,11 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="ZP9-iw-zWx">
+                                                    <rect key="frame" x="80" y="115" width="37" height="37"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <color key="color" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </activityIndicatorView>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
@@ -75,6 +80,7 @@
                                             <outlet property="showImage" destination="QPW-yh-kf1" id="Pn8-fd-dq9"/>
                                             <outlet property="showNameLabel" destination="k6w-Ka-eir" id="vWr-Ap-Efe"/>
                                             <outlet property="showRatingLabel" destination="aaM-u8-3Ah" id="3Mg-Fb-CYW"/>
+                                            <outlet property="spinner" destination="ZP9-iw-zWx" id="zP9-pT-c0v"/>
                                             <segue destination="nJ5-Fy-yW0" kind="show" identifier="segueToEpisodes" id="wOq-yh-Joj"/>
                                         </connections>
                                     </tableViewCell>
@@ -262,6 +268,11 @@
                                                             <color key="textColor" red="0.79121847382656818" green="0.79121847382656818" blue="0.79121847382656818" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
+                                                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="kg9-de-aGw">
+                                                            <rect key="frame" x="189" y="102" width="37" height="37"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <color key="color" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </activityIndicatorView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Episode Name" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="zQe-0j-9TM">
                                                             <rect key="frame" x="92" y="144" width="231" height="88"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -289,6 +300,7 @@
                                             <outlet property="episodeNameLabel" destination="zQe-0j-9TM" id="omT-2S-yBM"/>
                                             <outlet property="runTimeLabel" destination="2Ge-wp-AMk" id="jUa-do-SYt"/>
                                             <outlet property="seasonEpisodeLabel" destination="DvH-mE-wZ2" id="ixX-RR-QgI"/>
+                                            <outlet property="spinner" destination="kg9-de-aGw" id="VQw-2C-hsJ"/>
                                             <segue destination="Dsf-6Y-MrJ" kind="show" identifier="segueToDetail" id="zqz-kq-1LZ"/>
                                         </connections>
                                     </tableViewCell>

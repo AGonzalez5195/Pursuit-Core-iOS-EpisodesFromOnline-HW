@@ -14,6 +14,7 @@ class showEpisodesTableViewCell: UITableViewCell {
     @IBOutlet weak var seasonEpisodeLabel: UILabel!
     @IBOutlet weak var episodeNameLabel: UILabel!
     @IBOutlet weak var runTimeLabel: UILabel!
+    @IBOutlet weak var spinner: UIActivityIndicatorView!
     
     override func awakeFromNib() {
         super.awakeFromNib()

@@ -83,16 +83,25 @@ class showViewController: UIViewController {
     
     private func setCellImage(show: Show, cell: ShowTableViewCell) {
         if let showImage = show.image?.original {
+            cell.spinner.isHidden = false
+            cell.spinner.startAnimating()
             ImageHelper.shared.fetchImage(urlString: showImage) { (result) in
                 DispatchQueue.main.async {
                     switch result {
                     case .failure(let error):
                         print(error)
                     case .success(let imageFromOnline):
-                        cell.showImage.image = imageFromOnline }
+                        cell.showImage.image = imageFromOnline
+                        cell.spinner.isHidden = true
+                        cell.spinner.stopAnimating()
+                    }
                 }
             }
-        } else { cell.showImage.image = #imageLiteral(resourceName: "noImage") }
+        } else {
+            cell.showImage.image = #imageLiteral(resourceName: "noImage")
+            cell.spinner.isHidden = true
+            cell.spinner.stopAnimating()
+        }
     }
     
     private func setCellText(show: Show, cell: ShowTableViewCell){

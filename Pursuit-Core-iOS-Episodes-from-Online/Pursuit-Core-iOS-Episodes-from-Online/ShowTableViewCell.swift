@@ -16,7 +16,7 @@ class ShowTableViewCell: UITableViewCell {
     @IBOutlet weak var showNameLabel: UILabel!
     @IBOutlet weak var showRatingLabel: UILabel!
     @IBOutlet weak var genreLabel: UILabel!
-   
+    @IBOutlet weak var spinner: UIActivityIndicatorView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
